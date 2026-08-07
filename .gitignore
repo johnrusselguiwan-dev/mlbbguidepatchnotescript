@@ -1,0 +1,27 @@
+# Firebase & Secret Keys
+*-firebase-adminsdk-*.json
+serviceAccountKey.json
+*.pem
+*.key
+.env
+.env.*
+
+# Scraped Data Output
+patch-notes-*.json
+
+# Dependencies
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OS & IDE Files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo

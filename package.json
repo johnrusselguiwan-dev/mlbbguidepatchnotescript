@@ -1,0 +1,13 @@
+{
+  "name": "mlbb-patch-notes-scraper",
+  "version": "1.0.0",
+  "description": "Scrapes MLBB patch notes and uploads to Firebase Firestore",
+  "main": "scraper.js",
+  "scripts": {
+    "scrape": "node scraper.js",
+    "scrape:firebase": "node scraper.js --firebase"
+  },
+  "dependencies": {
+    "firebase-admin": "^12.0.0"
+  }
+}
