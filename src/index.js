@@ -26,7 +26,6 @@ ${c.bold}${c.cyan}=====================================================${c.reset
 ${c.bold}${c.yellow}      MLBB PATCH NOTES SCRAPER & SYNC CLI${c.reset}
 ${c.bold}${c.cyan}=====================================================${c.reset}`);
 
-  // Step 1: Data Source Selection
   let sourceChoice = cliArgs.source;
   if (sourceChoice === 'mlbbhub' || sourceChoice === '1') {
     sourceChoice = '1';
@@ -52,7 +51,6 @@ ${c.bold}${c.cyan}=====================================================${c.reset
   };
   const sourceName = sourceNameMap[sourceChoice];
 
-  // Step 2: Export Destination Selection
   let destChoice = cliArgs.destination;
   if (['local', '1'].includes(destChoice)) {
     destChoice = '1';
@@ -82,7 +80,6 @@ ${c.bold}${c.cyan}=====================================================${c.reset
     }
   }
 
-  // Step 3: Firebase Collection Selection & Key Resolution
   const isFirebase = destChoice === '2' || destChoice === '3';
   let targetCollection = cliArgs.collection;
   let firebaseKeyPath = null;
@@ -95,13 +92,11 @@ ${c.bold}${c.cyan}=====================================================${c.reset
   }
 
   try {
-    // Instantiate scraper strategy via Factory Pattern
     const scraper = ScraperFactory.getScraper(sourceChoice, { outputDir: localDir });
     const patchData = await scraper.scrape();
 
     const { originalPatches, advancedPatches } = patchData;
 
-    // Handle export destinations
     const exportResult = await ExporterManager.handleExport(patchData, {
       destChoice,
       localDir,

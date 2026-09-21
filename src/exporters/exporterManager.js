@@ -47,16 +47,13 @@ class ExporterManager {
     const { originalPatches, advancedPatches } = patchData;
     const { destChoice, localDir, isFirebase, firebaseKeyPath, targetCollection, isInteractive } = options;
 
-    // 1. Always back up locally
     const savedFiles = exportLocalJson(originalPatches, advancedPatches, localDir);
 
-    // 2. Firebase upload if selected
     const firebaseSyncedCols = [];
     if (isFirebase) {
       const synced = await uploadToFirebase(originalPatches, advancedPatches, firebaseKeyPath, targetCollection);
       if (synced) firebaseSyncedCols.push(synced);
 
-      // Re-upload interactive loop
       if (isInteractive) {
         let keepUploading = true;
         while (keepUploading) {

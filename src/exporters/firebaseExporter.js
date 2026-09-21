@@ -32,7 +32,6 @@ async function uploadToFirebase(originalPatches, advancedPatches, keyPath, targe
     const isAll = colName === 'all' || colName === '1';
     const isPatchesOnly = colName === 'patches' || colName === '2';
 
-    // Monolithic JSON bundle collections
     const bundleCols = [];
     if (isAll) {
       bundleCols.push('data_staging', 'staging', 'data');
@@ -54,7 +53,6 @@ async function uploadToFirebase(originalPatches, advancedPatches, keyPath, targe
       }
     });
 
-    // Update metadata timestamp if uploading bundle or all
     if (isAll || bundleCols.includes('data_staging')) {
       batch.set(
         db.collection('data_staging_meta').doc('patch_info'),
@@ -64,7 +62,6 @@ async function uploadToFirebase(originalPatches, advancedPatches, keyPath, targe
       targetCols.push('data_staging_meta');
     }
 
-    // Individual documents in 'patches' collection
     if (isAll || isPatchesOnly) {
       const prepareBatch = (patches, type) => {
         if (!patches || !Array.isArray(patches)) return;
