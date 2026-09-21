@@ -5,6 +5,8 @@
   "main": "scraper.js",
   "scripts": {
     "scrape": "node scraper.js",
+    "scrape:mlbbhub": "node scraper.js --source=mlbbhub",
+    "scrape:reddit": "node scraper.js --source=reddit",
     "scrape:firebase": "node scraper.js --firebase"
   },
   "dependencies": {
